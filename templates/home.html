@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do-List</title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="inner-main">
+        <div class="placing-two">
+          <h1 class="title">To-Do-List</h1>
+        </div>
+        <div class="add-button">
+          <div>
+            <h1>Tasks</h1>
+          </div>
+          <div class="add">
+            <img
+              src="{% static 'images/add.svg'%}"
+              alt=""
+              onclick="call_popup()"
+            />
+            <span onclick="call_popup()">Add Task </span>
+          </div>
+        </div>
+        <div class="tasks">
+          <div class="task-heading">
+            <div class="num">
+              <p>#</p>
+            </div>
+            <div class="title-des">
+              <p>Task Name</p>
+            </div>
+            <div class="priority-type">
+              <p>Priority Type</p>
+            </div>
+            <div class="due-date">
+              <p>Date</p>
+            </div>
+            <div class="status-type">
+              <p style="text-align: left !important">Status</p>
+            </div>
+          </div>
+          <div class="task hide">
+            <div class="number">
+              <h1>num</h1>
+            </div>
+            <div class="title">
+              <h1>title</h1>
+            </div>
+            <div class="priority">
+              <h1>priority</h1>
+            </div>
+            <div class="date">
+              <h1>date</h1>
+            </div>
+            <div class="status">
+              <h1>Status</h1>
+            </div>
+            <div class="edit">
+              <img
+                src="{% static 'images/edit.svg'%}"
+                alt="edit"
+                onclick="edit_task($(this))"
+              />
+            </div>
+            <div class="delete">
+              <img
+                src="{% static 'images/delete.svg'%}"
+                alt="edit"
+                onclick="delete_task($(this))"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pop-up hide">
+        <div class="inner-pop-up">
+          <div class="add-task">
+            <div class="cross">
+              <div>
+                <h1 style="text-align: center">Add-Task</h1>
+              </div>
+              <div class="cross-button">
+                <img
+                  src="{% static 'images/cross.svg' %}"
+                  onclick="cross()"
+                  alt=""
+                />
+              </div>
+            </div>
+            <form action="/add-task/" class="adding" method="post">
+              {% csrf_token %}
+              <label for="add-title">Title</label> <br />
+              <input required type="text" name="add-title" id="add-title" />
+              <br />
+              <label for="add-des">Description</label> <br />
+              <textarea
+                required
+                name="add-des"
+                id="add-des"
+                cols="10"
+                rows="10"
+              ></textarea>
+              <br />
+              <label for="add-priority">Priority</label> <br />
+              <select required id="add-priority" name="add-priority">
+                <option value="high">High</option>
+                <option value="Normal">Normal</option>
+                <option value="low">Low</option>
+              </select>
+              <br />
+              <label for="add-date">Date</label> <br />
+              <input required type="date" name="add-date" id="add-date" />
+              <br />
+              <label for="add-time">Time</label> <br />
+              <input required type="time" name="add-time" id="add-time" />
+              <br />
+              <label for="add-status">Status</label> <br />
+              <select required id="add-status" name="add-status">
+                <option value="incomplete">Incomplete</option>
+                <option value="Complete">Complete</option>
+              </select>
+              <br />
+              <input type="hidden" class="edit-id" name="edit-id" value="" />
+              <div class="submit-button">
+                <input
+                  type="submit"
+                  id="add-add"
+                  name="submit-button"
+                  value="Add Task"
+                />
+                <input
+                  type="submit"
+                  id="add-save"
+                  name="submit-button"
+                  value="Save"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'javascript/home.js' %}"></script>
+  </body>
+</html>

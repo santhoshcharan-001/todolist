@@ -199,3 +199,12 @@ select {
   transform: translateX(54px);
   color: #198875;
 }
+.priority{
+  transform: translateX(-53px);
+}
+.date{
+  transform: translateX(-26px);
+}
+.status{
+  transform: translateX(-40px);
+}

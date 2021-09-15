@@ -208,3 +208,6 @@ select {
 .status{
   transform: translateX(-40px);
 }
+.number{
+  transform: translateX(17px);
+}
